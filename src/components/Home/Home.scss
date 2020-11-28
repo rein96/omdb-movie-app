@@ -1,0 +1,28 @@
+.home-body-container{
+    background-color: var(--dark-2);
+
+  .home-card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .card-movie-container{
+    width: 300px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .movie-poster{
+    // width: 240px;
+    height: 360px;
+    // object-fit: cover;
+  }
+
+  .movie-title{
+    margin-top: 12px;
+  }
+}

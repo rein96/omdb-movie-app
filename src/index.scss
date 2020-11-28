@@ -31,4 +31,43 @@ html, body {
   overflow-x: hidden !important;
 }
 
+// Container helper
+.container-helper {
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container-helper {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container-helper {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-helper {
+    width: 1170px;
+  }
+}
+
+// elipsis
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// color background etc
+.bg-dark-2{
+  background-color: var(--dark-2);
+}
+
+.color-white{
+  color: white;
+}
+
 
