@@ -1,0 +1,28 @@
+.header-container{
+  height: 80px;
+  width: 100%;
+  background: var(--dark-1);
+
+  .navbar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 10% 0px 10%;
+    
+  }
+
+  .movie-brand-logo{
+    width: 72px;
+  }
+
+  .search-box{
+    height: 40px;
+    width: 300px;
+    background: var(--dark-2);
+    color: var(--dark-3);
+    border: none;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 16px;
+  }
+}
