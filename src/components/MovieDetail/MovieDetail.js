@@ -39,7 +39,7 @@ const MovieDetail = () => {
               <img src={movieDetail?.Poster} alt={movieDetail} />
               <div className='movie-detail-container'>
                 <h1>{movieDetail?.Title} ({movieDetail?.Year})</h1>
-                <span className='movie-rating'> Rating:{movieDetail?.imdbRating} / 10 ({movieDetail?.imdbVotes})</span>
+                <span className='movie-rating'> Rating: {movieDetail?.imdbRating} / 10 ({movieDetail?.imdbVotes})</span>
                 <p className='movie-plot'>{movieDetail?.Plot}</p>
               </div>
             </div>

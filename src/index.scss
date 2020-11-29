@@ -1,7 +1,8 @@
 :root{
-  --dark-1: #0F1115;  // light
+  --dark-1: #0F1115;  // darkest
   --dark-2: #222128;  // dark
-  --dark-3: #737277;
+  --dark-3: #737277;  // light
+  --green-1: #00FC87; // green
 }
 
 * {
@@ -75,8 +76,34 @@ html, body {
   cursor: pointer;
 }
 
+.cursor-default{
+  cursor: default;
+}
+
 .text-center{
   text-align: center;
+}
+
+.mb-24{
+  margin-bottom: 24px;
+}
+
+.button-app{
+  padding: 8px 12px;
+  color: var(--green-1);
+  background-color: transparent;
+  border: 2px solid var(--green-1);
+  text-align: center;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+  &:hover{
+    background-color: var(--green-1);
+    color: black;
+  }
+}
+
+.w-100{
+  width: 100%;
 }
 
 

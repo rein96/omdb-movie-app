@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 // import { useHistory } from 'react-router-dom';
 // import Navbar from 'components/shared/Navbar'
 import { connect } from 'react-redux'
 import { getInitialMovies } from 'actions/Action.js'
 import './Home.scss'
-// import ModalPoster from './ModalPoster'
+import ModalPoster from './ModalPoster'
 
 const Home = ({ getInitialMovies, globalStateMovie }) => {
+
+  const [modal, setModal] = useState({ show: false, selectedMovie: {} })
+
+  const onClickPoster = (movieId) => {
+    const findMovie = globalStateMovie.movies.find(movie => movie.imdbID === movieId)
+    setModal({ show: true, selectedMovie: findMovie })
+  }
 
   useEffect(() => {
     getInitialMovies()
@@ -19,15 +26,19 @@ const Home = ({ getInitialMovies, globalStateMovie }) => {
         <div className='home-card-container container-helper bg-dark-2'>
           {globalStateMovie.movies.map(movie => {
             return (
-              <div key={movie.imdbID} className='card-movie-container'>
-                <img src={movie.Poster} className='movie-poster' alt={movie.Title}/>
+              <div key={movie.imdbID} className='card-movie-container cursor-pointer'>
+                <img src={movie.Poster} className='movie-poster' alt={movie.Title} onClick={() => onClickPoster(movie.imdbID)} />
                 <h4 className='movie-title text-ellipsis color-white'>{movie.Title}</h4>
               </div>
             )
           })}
         </div>
       </div>
-      {/* <ModalPoster /> */}
+      {
+        modal.show
+        &&
+        <ModalPoster selectedMovie={modal.selectedMovie} setModal={setModal} />
+      }
     </section>
   )
 }

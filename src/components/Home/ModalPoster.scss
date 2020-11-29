@@ -1,0 +1,61 @@
+.modal-backdrop-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  // display: none;
+  transition: opacity .15s linear; // fade animation
+  overflow-x : hidden;
+  overflow-y : hidden;
+  background-color: rgba(0,0,0,0.5);
+
+  .modal-dialog{
+    transition: transform .3s ease-out,-webkit-transform .3s ease-out;
+  }
+
+  .modal-container{
+    max-width: 900px;
+    width: auto;
+    margin: 1.75rem auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-card-container{
+    display: flex;
+    padding: 24px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 1rem 3rem black;
+    background-color: black;
+  }
+
+  .modal-detail-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0px 16px;
+  }
+
+  .movie-type-label{
+    padding: 8px;
+    color: var(--green-1);
+    background-color: var(--dark-2);
+    display: inline-block;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+
+  .imdb-id{
+    opacity: 0.7;
+    font-size: 12px;
+    display: block;
+    margin-top: 8px;
+  }
+
+}

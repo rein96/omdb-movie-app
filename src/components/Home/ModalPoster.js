@@ -1,46 +1,32 @@
-// import React from 'react';
+import React from 'react';
+import './ModalPoster.scss';
 
-// function ModalPoster(props) {
-//   // const { id, title, children, onClick, progress, uploadLoading, postLoading, withHeader = true, withFooter = true } = props;
-//   return (
-//     <div className="modal fade ModalPoster" tabIndex="-1" role="dialog" aria-labelledby={title} aria-hidden="true">
-//       <div className="modal-dialog modal-dialog-centered" role="document">
-//         <div className="modal-content modal-custom">
+function ModalPoster({ selectedMovie, setModal }) {
+  return (
+    <div className="modal-backdrop-container cursor-pointer" onClick={() => setModal({ show: false, selectedMovie: {} })}>
+      <div className='modal-container'>
+        <div className='modal-card-container cursor-default' onClick={(e) => e.stopPropagation()}>
+          <img src={selectedMovie?.Poster} alt={selectedMovie?.Title} />
+          <div className='modal-detail-container'>
+            <div className='upper-detail'>
+              <h1 className='mb-24'>
+                {selectedMovie?.Title} ({selectedMovie?.Year})
+                <div className='movie-type-label'>
+                  {selectedMovie?.Type.charAt(0).toUpperCase() + selectedMovie?.Type.slice(1)}
+                </div>
+              </h1>
+              <span className='imdb-id'>IMDB ID: #{selectedMovie?.imdbID}</span>
+            </div>
+            <div className='lower-detail'>
+              <button type='button' className='button-app w-100 cursor-pointer'>
+                Go To Movie Detail
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
-//           <div className="modal-header header-custom">
-//             <h5 className="modal-title title-custom">{title}</h5>
-//             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-//               <span className="close-custom" aria-hidden="true">&times;</span>
-//             </button>
-//           </div>
-//           <div className="modal-body body-custom">
-//             <h1>LOL</h1>
-//           </div>
-
-//           <div className="modal-footer footer-custom">
-
-//             <center className="w-100">
-//               <span className="text-white">{progress}</span>
-//               <div className="progressbar-container">
-//                 <div className={`progressbar-progress width-percentage-${progress}`}></div>
-//                 <div className="progressbar-background"></div>
-//               </div>
-//             </center>
-
-
-//             <>
-//               <button type="button" className="btn btn-secondary btn-text" data-dismiss="modal">Close</button>
-//               <button type="button" onClick={onClick && onClick} className="btn btn-md btn-no-outline btn-slice2 btnStyle-success btn-padding-bs">Save changes</button>
-//             </>
-
-
-
-//           </div>
-
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default ModalPoster
+export default ModalPoster
