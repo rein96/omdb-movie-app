@@ -19,11 +19,11 @@
     height: 40px;
     width: 300px;
     background: var(--dark-2);
-    color: var(--dark-3);
     border: none;
     padding: 8px;
     font-size: 14px;
     border-radius: 16px;
+    color: white;
   }
 
   .dropdown-search-container{
@@ -34,9 +34,11 @@
     height: 250px;
     padding: 8px 16px;
     box-shadow: 0 1rem 3rem black;
+    overflow-y: auto;
   }
 
   .movie-list{
+    cursor: pointer;
     height: 40px;
     display: flex;
     align-items: center;

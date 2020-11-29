@@ -3,6 +3,10 @@
 const init = {
   movies: [],
   totalResults: 0,
+  loadingMovies: false,
+  searchMovies: [],
+  searchTotalResults: 0,
+  loadingSearchMovies: false,
 }
 
 export default (state = init, action) => {
@@ -14,14 +18,28 @@ export default (state = init, action) => {
         movies: payload.Search,
         totalResults: payload.totalResults
       }
-      // case 'LOGIN_SUCCESS':
-      //     const { id, name, username, email, phone_number, is_admin, avatar, addresses } = action.payload
-      //     return {
-      //         ...state,
-      //         id, name, username, email, phone_number, is_admin, avatar, addresses
-      //     }
+    case 'SEARCH_MOVIES':
+      const { Search, totalResults } = action.payload
+      return {
+        ...state,
+        searchMovies: Search,
+        searchTotalResults: totalResults
+      }
 
-      default:
-          return state
+    case 'SET_LOADING_INITIAL_MOVIES':
+      return {
+        ...state,
+        loadingMovies: true
+      };
+
+    case 'SET_LOADING_SEARCH_MOVIES':
+      return {
+        ...state,
+        loadingSearchMovies: true
+      };
+
+
+    default:
+      return state
   }
 }
