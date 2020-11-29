@@ -8,21 +8,4 @@
     flex-wrap: wrap;
   }
 
-  .card-movie-container{
-    width: 300px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .movie-poster{
-    // width: 240px;
-    height: 360px;
-    // object-fit: cover;
-  }
-
-  .movie-title{
-    margin-top: 12px;
-  }
 }

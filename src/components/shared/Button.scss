@@ -1,0 +1,13 @@
+.button-app{
+  padding: 8px 12px;
+  color: var(--green-1);
+  background-color: transparent;
+  border: 2px solid var(--green-1);
+  text-align: center;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+  &:hover{
+    background-color: var(--green-1);
+    color: black;
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getMovies } from 'actions/Action.js'
 import ModalPoster from 'components/Home/ModalPoster.js'
+import MovieCard from 'components/Home/MovieCard'
 import './Home.scss'
 
 const Home = ({ getMovies, globalStateMovie }) => {
@@ -26,10 +27,7 @@ const Home = ({ getMovies, globalStateMovie }) => {
         <div className='home-card-container container-helper bg-dark-2'>
           {globalStateMovie.movies.map(movie => {
             return (
-              <div key={movie.imdbID} className='card-movie-container cursor-pointer'>
-                <img src={movie.Poster} className='movie-poster' alt={movie.Title} onClick={() => onClickPoster(movie.imdbID)} />
-                <h4 className='movie-title text-ellipsis color-white'>{movie.Title}</h4>
-              </div>
+              <MovieCard key={movie.imdbID} movie={movie} onClickPoster={onClickPoster}/>
             )
           })}
         </div>

@@ -5,9 +5,10 @@ import useDebounce from 'Hooks/useDebounce'
 import logo from 'images/RALogoOriginal.png'
 import { getMovies, searchMovie, setLoading, setEmptyMovie } from 'actions/Action.js'
 import Loading from 'components/shared/Loading.js'
+import Movielist from 'components/shared/MovieList.js';
 import './Navbar.scss'
 
-function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmptyMovie}) {
+function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmptyMovie }) {
   const history = useHistory();
 
   const [searchValue, setSearchValue] = useState('')
@@ -37,7 +38,7 @@ function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmpty
   }
 
   useEffect(() => {
-    if(searchValue){
+    if (searchValue) {
       searchMovie(searchValue)
       setLoading('SET_LOADING_SEARCH_MOVIES')
     } else {
@@ -78,9 +79,7 @@ function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmpty
                       :
                       globalStateMovie?.searchMovies.map(movie => {
                         return (
-                          <div className='movie-list text-ellipsis' key={movie.imdbID} onClick={() => handleClickMovie(movie.imdbID, movie.Title)}>
-                            {movie.Title}
-                          </div>
+                          <Movielist key={movie.imdbID} handleClickMovie={handleClickMovie} movie={movie} />
                         )
                       })
                   )

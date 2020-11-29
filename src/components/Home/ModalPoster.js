@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Button from 'components/shared/Button';
 import './ModalPoster.scss';
 
 function ModalPoster({ selectedMovie, setModal }) {
@@ -20,12 +21,9 @@ function ModalPoster({ selectedMovie, setModal }) {
               <span className='imdb-id'>IMDB ID: #{selectedMovie?.imdbID}</span>
             </div>
             <div className='lower-detail'>
-              <button
-                type='button'
-                className='button-app w-100 cursor-pointer'
-                onClick={() => history.push(`/movie/${selectedMovie?.imdbID}`)}>
+              <Button className='w-100' onClick={() => history.push(`/movie/${selectedMovie?.imdbID}`)}>
                 Go To Movie Detail
-              </button>
+              </Button>
             </div>
           </div>
         </div>

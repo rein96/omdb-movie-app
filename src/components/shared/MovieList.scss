@@ -1,0 +1,13 @@
+.movie-list{
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 0px 8px;
+  font-weight: 600;
+  &:hover{
+    background-color: var(--green-1);
+    color: black;
+  }
+}
