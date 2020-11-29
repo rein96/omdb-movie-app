@@ -3,8 +3,8 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import './index.scss'
 
 import Navbar from 'components/shared/Navbar'
-import Home from 'components/Home/Home'
-import MovieDetail from 'components/MovieDetail/MovieDetail.js'
+import Home from 'pages/Home.js'
+import MovieDetail from 'pages/MovieDetail.js'
 
 
 const App = () => {

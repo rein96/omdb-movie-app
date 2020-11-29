@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-// import { useHistory } from 'react-router-dom';
-// import Navbar from 'components/shared/Navbar'
 import { connect } from 'react-redux'
 import { getMovies } from 'actions/Action.js'
+import ModalPoster from 'components/Home/ModalPoster.js'
 import './Home.scss'
-import ModalPoster from './ModalPoster'
 
 const Home = ({ getMovies, globalStateMovie }) => {
 

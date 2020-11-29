@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
-import useDebounce from '../../Hooks/useDebounce'
+import useDebounce from 'Hooks/useDebounce'
 import logo from 'images/RALogoOriginal.png'
 import { getMovies, searchMovie, setLoading, setEmptyMovie } from 'actions/Action.js'
 import Loading from 'components/shared/Loading.js'
