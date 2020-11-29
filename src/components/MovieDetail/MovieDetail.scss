@@ -1,0 +1,36 @@
+.section-movie-detail{
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  
+  .movie-card-detail-container{
+    display: flex;
+    border: 1px solid var(--dark-1);
+    background-color: var(--dark-1);
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 1rem 3rem black;
+  }
+
+  .movie-detail-container{
+    padding: 24px;
+  }
+
+  h1{
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+
+  .movie-plot{
+    letter-spacing: 1px;
+    white-space: pre-line;
+    opacity: .8;
+    font-size: 14px;
+    margin-top: 24px;
+  }
+
+  // .movie-rating{
+
+  // }
+
+}

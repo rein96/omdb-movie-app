@@ -18,6 +18,7 @@ body {
   font-family: "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--dark-2);
 }
 
 code {
@@ -72,6 +73,10 @@ html, body {
 
 .cursor-pointer{
   cursor: pointer;
+}
+
+.text-center{
+  text-align: center;
 }
 
 

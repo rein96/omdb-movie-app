@@ -38,3 +38,12 @@ export const searchMovie = (searchValue) => async dispatch => {
     console.error(err);
   }
 }
+
+export const getMovieDetail = async (imdbId) => {
+  try {
+    const { data } = await axios.get(`http://www.omdbapi.com?apikey=faf7e5bb&i=${imdbId}`)
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
