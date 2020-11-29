@@ -54,13 +54,6 @@ html, body {
   }
 }
 
-// elipsis
-.text-ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 // color background etc
 .bg-dark-2{
   background-color: var(--dark-2);
@@ -68,6 +61,17 @@ html, body {
 
 .color-white{
   color: white;
+}
+
+// etc (self-explanatory)
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
 
 

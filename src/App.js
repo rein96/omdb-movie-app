@@ -2,19 +2,19 @@ import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import './index.scss'
 
-import Home from './components/Home/Home'
+import Navbar from 'components/shared/Navbar'
+import Home from 'components/Home/Home'
+import MovieDetail from 'components/MovieDetail/MovieDetail.js'
+
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Navbar />
       <Switch>
         {/* <ScrollToTop> */}
         <Route path='/' exact component={Home} />
-        {/* 
-        <Route path='/products' component={Products} />
-        <Route path='/productdetail/:productID' component={ProductDetail} /> 
-        */}
-
+        <Route path='/movie/:movieId' component={MovieDetail} />
         {/* </ScrollToTop> */}
       </Switch>
 

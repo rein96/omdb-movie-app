@@ -27,7 +27,6 @@ export const searchMovie = (searchValue) => async dispatch => {
     setLoading('SEARCH_MOVIES')
     const { data } = await axios.get(`http://www.omdbapi.com?apikey=faf7e5bb&s=${searchValue}`)
 
-    console.log("🚀 ~ file: Action.js ~ line 24 ~ data", data)
     if (data.Response === 'True') {
       dispatch({
         type: 'SEARCH_MOVIES',

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import useDebounce from '../../Hooks/useDebounce'
 import logo from 'images/RALogoOriginal.png'
@@ -7,11 +8,17 @@ import Loading from 'components/shared/Loading.js'
 import './Navbar.scss'
 
 function Navbar({ searchMovie, globalStateMovie }) {
+  const history = useHistory();
 
   const [searchValue, setSearchValue] = useState('')
   const [isFocus, setIsFocus] = useState(false)
   const debouncedSearchValue = useDebounce(searchValue, 1000);
 
+  const handleOnBlur = () => {
+    setTimeout(() => {
+      setIsFocus(false)
+    }, 500);
+  }
 
   useEffect(() => {
     searchValue && searchMovie(searchValue)
@@ -20,14 +27,14 @@ function Navbar({ searchMovie, globalStateMovie }) {
   return (
     <header className='header-container'>
       <nav className='navbar-container'>
-        <img className='movie-brand-logo' src={logo} alt='movie RA logo' />
+        <img className='movie-brand-logo cursor-pointer' src={logo} alt='movie RA logo' onClick={() => history.push('/')}/>
         <div className='search-and-dropdown'>
           <input
             className='search-box'
             type='text'
             placeholder='Search Movie Title...'
             onFocus={() => setIsFocus(true)}
-            // onBlur={() => setIsFocus(false)}
+            onBlur={() => handleOnBlur()}
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
@@ -42,7 +49,7 @@ function Navbar({ searchMovie, globalStateMovie }) {
                   :
                   globalStateMovie?.searchMovies.map(movie => {
                     return (
-                      <div className='movie-list' key={movie.imdbID}>
+                      <div className='movie-list' key={movie.imdbID} onClick={() => history.push(`/movie/${movie.imdbID}`)}>
                         {movie.Title}
                       </div>
                     )
