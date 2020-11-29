@@ -25,4 +25,21 @@
     font-size: 14px;
     border-radius: 16px;
   }
+
+  .dropdown-search-container{
+    position: absolute;
+    color: white;
+    background-color: var(--dark-2);
+    width: 300px;
+    height: 250px;
+    padding: 8px 16px;
+    box-shadow: 0 1rem 3rem black;
+  }
+
+  .movie-list{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: white;
+  }
 }

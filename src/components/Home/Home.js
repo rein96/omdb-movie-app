@@ -3,16 +3,11 @@ import Navbar from 'components/shared/Navbar'
 import { connect } from 'react-redux'
 import { getInitialMovies } from 'actions/Action.js'
 import './Home.scss'
+// import ModalPoster from './ModalPoster'
 
 const Home = ({ getInitialMovies, globalStateMovie }) => {
 
-  // const getMovieData = async () => {
-  //   getInitialMovies()
-  //   console.log("🚀 ~ file: Home.js ~ line 10 ~ getMovieData ~ res", res)
-  // }
-
   useEffect(() => {
-    // getMovieData()
     getInitialMovies()
   }, [])
 
@@ -31,13 +26,14 @@ const Home = ({ getInitialMovies, globalStateMovie }) => {
           })}
         </div>
       </div>
+      {/* <ModalPoster /> */}
     </section>
   )
 }
 
 const mapStateToProps = ({ globalStateMovie }) => {
   return {
-    globalStateMovie: globalStateMovie // { movie }
+    globalStateMovie: globalStateMovie // { movies }
   }
 }
 
