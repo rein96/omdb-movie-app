@@ -16,21 +16,25 @@ export default (state = init, action) => {
       return {
         ...state,
         movies: payload.Search,
-        totalResults: payload.totalResults
+        totalResults: payload.totalResults,
+        loadingMovies: false
       }
+
     case 'SEARCH_MOVIES':
       const { Search, totalResults } = action.payload
       return {
         ...state,
         searchMovies: Search,
-        searchTotalResults: totalResults
+        searchTotalResults: totalResults,
+        loadingSearchMovies: false
       }
 
-    case 'SET_LOADING_INITIAL_MOVIES':
-      return {
+    case 'SEARCH_MOVIES_EMPTY' :
+      return{
         ...state,
-        loadingMovies: true
-      };
+        searchMovies: [],
+        loadingSearchMovies: false
+      }
 
     case 'SET_LOADING_SEARCH_MOVIES':
       return {
@@ -38,6 +42,19 @@ export default (state = init, action) => {
         loadingSearchMovies: true
       };
 
+    case 'SET_LOADING_INITIAL_MOVIES':
+      return {
+        ...state,
+        loadingMovies: true
+      };
+
+    case 'ERROR':
+      return{
+        ...state,
+        error: action.payload,
+        loadingSearchMovies: false,
+        loadingMovies: false
+      }
 
     default:
       return state

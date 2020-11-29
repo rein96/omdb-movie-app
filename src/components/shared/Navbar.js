@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import useDebounce from '../../Hooks/useDebounce'
 import logo from 'images/RALogoOriginal.png'
-import { searchMovie } from 'actions/Action.js'
+import { searchMovie, setLoading } from 'actions/Action.js'
 import Loading from 'components/shared/Loading.js'
 import './Navbar.scss'
 
-function Navbar({ searchMovie, globalStateMovie }) {
+function Navbar({ searchMovie, globalStateMovie, setLoading }) {
   const history = useHistory();
 
   const [searchValue, setSearchValue] = useState('')
@@ -20,6 +20,16 @@ function Navbar({ searchMovie, globalStateMovie }) {
     }, 500);
   }
 
+  const handleSearch = (searchValue) => {
+    setLoading('SET_LOADING_SEARCH_MOVIES')
+    setSearchValue(searchValue)
+  }
+
+  const handleClickMovie = (imdbID, title) => {
+    setSearchValue(title)
+    history.push(`/movie/${imdbID}`)
+  }
+
   useEffect(() => {
     searchValue && searchMovie(searchValue)
   }, [debouncedSearchValue])
@@ -27,7 +37,7 @@ function Navbar({ searchMovie, globalStateMovie }) {
   return (
     <header className='header-container'>
       <nav className='navbar-container'>
-        <img className='movie-brand-logo cursor-pointer' src={logo} alt='movie RA logo' onClick={() => history.push('/')}/>
+        <img className='movie-brand-logo cursor-pointer' src={logo} alt='movie RA logo' onClick={() => history.push('/')} />
         <div className='search-and-dropdown'>
           <input
             className='search-box'
@@ -36,7 +46,7 @@ function Navbar({ searchMovie, globalStateMovie }) {
             onFocus={() => setIsFocus(true)}
             onBlur={() => handleOnBlur()}
             value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
           />
           {
             isFocus
@@ -45,15 +55,23 @@ function Navbar({ searchMovie, globalStateMovie }) {
               {
                 globalStateMovie.loadingSearchMovies
                   ?
-                  <Loading />
+                  <div className='text-center'>
+                    <Loading />
+                  </div>
                   :
-                  globalStateMovie?.searchMovies.map(movie => {
-                    return (
-                      <div className='movie-list' key={movie.imdbID} onClick={() => history.push(`/movie/${movie.imdbID}`)}>
-                        {movie.Title}
-                      </div>
-                    )
-                  })
+                  (
+                    globalStateMovie?.searchMovies.length === 0
+                      ?
+                      <h3 className='empty-state-text'>Empty Data</h3>
+                      :
+                      globalStateMovie?.searchMovies.map(movie => {
+                        return (
+                          <div className='movie-list' key={movie.imdbID} onClick={() => handleClickMovie(movie.imdbID, movie.Title)}>
+                            {movie.Title}
+                          </div>
+                        )
+                      })
+                  )
               }
             </div>
           }
@@ -69,4 +87,4 @@ const mapStateToProps = ({ globalStateMovie }) => {
   }
 }
 
-export default connect(mapStateToProps, { searchMovie })(Navbar);
+export default connect(mapStateToProps, { searchMovie, setLoading })(Navbar);

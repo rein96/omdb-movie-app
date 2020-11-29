@@ -32,9 +32,10 @@
     background-color: var(--dark-2);
     width: 300px;
     height: 250px;
-    padding: 8px 16px;
+    // padding: 8px 16px;k
     box-shadow: 0 1rem 3rem black;
     overflow-y: auto;
+    border-radius: 0px 0px 8px 8px;
   }
 
   .movie-list{
@@ -43,5 +44,18 @@
     display: flex;
     align-items: center;
     color: white;
+    padding: 0px 8px;
+    font-weight: 600;
+    &:hover{
+      background-color: var(--green-1);
+      color: black;
+    }
+  }
+
+  .empty-state-text{
+    text-align: center;
+    color: white;
+    opacity: 0.7;
+    margin-top: 24px;
   }
 }

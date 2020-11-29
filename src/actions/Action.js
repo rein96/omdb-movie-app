@@ -5,13 +5,12 @@ let url = 'http://www.omdbapi.com?apikey=faf7e5bb';
 // set loading to TRUE based on type
 export const setLoading = (type) => {
   return {
-    type: `SET_LOADING_${type}`
+    type: type,
   };
 }
 
 export const getInitialMovies = () => async dispatch => {
   try {
-    setLoading('INITIAL_MOVIES')
     const { data } = await axios.get(`${url}&s=disney&`)
 
     dispatch({
@@ -21,12 +20,15 @@ export const getInitialMovies = () => async dispatch => {
 
   } catch (err) {
     console.error(err);
+    dispatch({
+      type: 'ERROR',
+      payload: err.response.statusText
+    })
   }
 }
 
 export const searchMovie = (searchValue) => async dispatch => {
   try {
-    setLoading('SEARCH_MOVIES')
     const { data } = await axios.get(`${url}&s=${searchValue}`)
 
     if (data.Response === 'True') {
@@ -34,10 +36,18 @@ export const searchMovie = (searchValue) => async dispatch => {
         type: 'SEARCH_MOVIES',
         payload: data
       })
+    } else {
+      dispatch({
+        type: 'SEARCH_MOVIES_EMPTY'
+      })
     }
 
   } catch (err) {
     console.error(err);
+    dispatch({
+      type: 'ERROR',
+      payload: err
+    })
   }
 }
 
