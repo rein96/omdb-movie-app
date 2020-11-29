@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 // import { useHistory } from 'react-router-dom';
 // import Navbar from 'components/shared/Navbar'
 import { connect } from 'react-redux'
-import { getInitialMovies } from 'actions/Action.js'
+import { getMovies } from 'actions/Action.js'
 import './Home.scss'
 import ModalPoster from './ModalPoster'
 
-const Home = ({ getInitialMovies, globalStateMovie }) => {
+const Home = ({ getMovies, globalStateMovie }) => {
 
   const [modal, setModal] = useState({ show: false, selectedMovie: {} })
 
@@ -16,7 +16,9 @@ const Home = ({ getInitialMovies, globalStateMovie }) => {
   }
 
   useEffect(() => {
-    getInitialMovies()
+    if(globalStateMovie?.movies.length === 0){
+      getMovies('disney')
+    }
   }, [])
 
   return (
@@ -49,4 +51,4 @@ const mapStateToProps = ({ globalStateMovie }) => {
   }
 }
 
-export default connect(mapStateToProps, { getInitialMovies })(Home);
+export default connect(mapStateToProps, { getMovies })(Home);

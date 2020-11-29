@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import useDebounce from '../../Hooks/useDebounce'
 import logo from 'images/RALogoOriginal.png'
-import { searchMovie, setLoading } from 'actions/Action.js'
+import { getMovies, searchMovie, setLoading, setEmptyMovie } from 'actions/Action.js'
 import Loading from 'components/shared/Loading.js'
 import './Navbar.scss'
 
-function Navbar({ searchMovie, globalStateMovie, setLoading }) {
+function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmptyMovie}) {
   const history = useHistory();
 
   const [searchValue, setSearchValue] = useState('')
@@ -20,9 +20,15 @@ function Navbar({ searchMovie, globalStateMovie, setLoading }) {
     }, 500);
   }
 
-  const handleSearch = (searchValue) => {
-    setLoading('SET_LOADING_SEARCH_MOVIES')
-    setSearchValue(searchValue)
+  const handleSearch = (value) => {
+    setSearchValue(value)
+  }
+
+  const handleKeyDown = (event) => {
+    // press enter
+    if (event.keyCode === 13 && searchValue) {
+      getMovies(searchValue)
+    }
   }
 
   const handleClickMovie = (imdbID, title) => {
@@ -31,7 +37,12 @@ function Navbar({ searchMovie, globalStateMovie, setLoading }) {
   }
 
   useEffect(() => {
-    searchValue && searchMovie(searchValue)
+    if(searchValue){
+      searchMovie(searchValue)
+      setLoading('SET_LOADING_SEARCH_MOVIES')
+    } else {
+      setEmptyMovie()
+    }
   }, [debouncedSearchValue])
 
   return (
@@ -46,7 +57,8 @@ function Navbar({ searchMovie, globalStateMovie, setLoading }) {
             onFocus={() => setIsFocus(true)}
             onBlur={() => handleOnBlur()}
             value={searchValue}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value, e)}
+            onKeyDown={handleKeyDown}
           />
           {
             isFocus
@@ -66,7 +78,7 @@ function Navbar({ searchMovie, globalStateMovie, setLoading }) {
                       :
                       globalStateMovie?.searchMovies.map(movie => {
                         return (
-                          <div className='movie-list' key={movie.imdbID} onClick={() => handleClickMovie(movie.imdbID, movie.Title)}>
+                          <div className='movie-list text-ellipsis' key={movie.imdbID} onClick={() => handleClickMovie(movie.imdbID, movie.Title)}>
                             {movie.Title}
                           </div>
                         )
@@ -87,4 +99,4 @@ const mapStateToProps = ({ globalStateMovie }) => {
   }
 }
 
-export default connect(mapStateToProps, { searchMovie, setLoading })(Navbar);
+export default connect(mapStateToProps, { searchMovie, setLoading, getMovies, setEmptyMovie })(Navbar);

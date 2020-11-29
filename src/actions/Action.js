@@ -9,9 +9,9 @@ export const setLoading = (type) => {
   };
 }
 
-export const getInitialMovies = () => async dispatch => {
+export const getMovies = (searchValue) => async dispatch => {
   try {
-    const { data } = await axios.get(`${url}&s=disney&`)
+    const { data } = await axios.get(`${url}&s=${searchValue}`)
 
     dispatch({
       type: 'INITIAL_MOVIES',
@@ -48,6 +48,12 @@ export const searchMovie = (searchValue) => async dispatch => {
       type: 'ERROR',
       payload: err
     })
+  }
+}
+
+export const setEmptyMovie = () => {
+  return{
+    type: 'SEARCH_MOVIES_EMPTY',
   }
 }
 
