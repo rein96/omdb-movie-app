@@ -8,7 +8,7 @@ import Loading from 'components/shared/Loading.js'
 import Movielist from 'components/shared/MovieList.js';
 import './Navbar.scss'
 
-function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmptyMovie }) {
+function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
   const history = useHistory();
 
   const [searchValue, setSearchValue] = useState('')
@@ -29,6 +29,7 @@ function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmpty
   const handleKeyDown = (event) => {
     // press enter
     if (event.keyCode === 13 && searchValue) {
+      history.push(`/`)
       getMovies(searchValue)
     }
   }
@@ -50,20 +51,20 @@ function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmpty
 
   useEffect(() => {
     const loadData = async () => {
-      setLoading('SET_LOADING_SCROLL_SEARCH_MOVIES')
       searchMovie({ searchValue, page, isScroll: true })
     };
 
     loadData();
+    // eslint-disable-next-line
   }, [page])
 
   useEffect(() => {
     if (searchValue) {
       searchMovie({ searchValue, page: 1, isScroll: false })
-      setLoading('SET_LOADING_SEARCH_MOVIES')
     } else {
       setEmptyMovie()
     }
+    // eslint-disable-next-line
   }, [debouncedSearchValue])
 
   return (

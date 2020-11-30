@@ -11,10 +11,11 @@ export const setLoading = (type) => {
 
 export const getMovies = (searchValue) => async dispatch => {
   try {
+    setLoading('HOME_LOADING')
     const { data } = await axios.get(`${url}&s=${searchValue}`)
 
     dispatch({
-      type: 'INITIAL_MOVIES',
+      type: 'GET_MOVIES',
       payload: data
     })
 
@@ -29,6 +30,7 @@ export const getMovies = (searchValue) => async dispatch => {
 
 export const searchMovie = ({searchValue, page = 1, isScroll = false}) => async dispatch => {
   try {
+    setLoading(isScroll ? 'SET_LOADING_SCROLL_SEARCH_MOVIES' : 'SET_LOADING_SEARCH_MOVIES')
     const { data } = await axios.get(`${url}&s=${searchValue}&page=${page}`)
 
     if (data.Response === 'True') {

@@ -7,13 +7,13 @@ const init = {
   searchMovies: [],
   searchTotalResults: 0,
   loadingSearchMovies: false,
-  scrollLoading : false
+  scrollLoading: false
 }
 
 export default (state = init, action) => {
   const payload = action.payload;
   switch (action.type) {
-    case 'INITIAL_MOVIES':
+    case 'GET_MOVIES':
       return {
         ...state,
         movies: payload.Search,
@@ -47,16 +47,16 @@ export default (state = init, action) => {
         scrollLoading: false,
       }
 
+    case 'HOME_LOADING':
+      return {
+        ...state,
+        loadingMovies: true
+      }
+
     case 'SET_LOADING_SEARCH_MOVIES':
       return {
         ...state,
         loadingSearchMovies: true
-      };
-
-    case 'SET_LOADING_INITIAL_MOVIES':
-      return {
-        ...state,
-        loadingMovies: true
       };
 
     case 'SET_LOADING_SCROLL_SEARCH_MOVIES':
