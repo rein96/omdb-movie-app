@@ -55,7 +55,8 @@ const Home = ({ getMovies, globalStateMovie }) => {
             {globalStateMovie.loadingMovies
               ?
               <Loading />
-              : globalStateMovie.movies.map((movie, index) => {
+              :
+              globalStateMovie.movies.map((movie, index) => {
                 return (
                   <MovieCard key={movie.imdbID} index={index} movie={movie} onClick={onClickPoster} />
                 )

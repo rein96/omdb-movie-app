@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { getMovieDetail } from 'actions/Action.js'
+import { fallBackErrorImage } from 'utils/Helper.js'
 import Loading from 'components/shared/Loading';
 import './MovieDetail.scss'
 
@@ -34,7 +35,7 @@ const MovieDetail = () => {
             <Loading />
             :
             <div className='movie-card-detail-container'>
-              <img className='poster-image' src={movieDetail?.Poster} alt={movieDetail} />
+              <img className='poster-image' src={movieDetail?.Poster} alt={movieDetail} onError={(e) => {e.target.src = fallBackErrorImage}}/>
               <div className='movie-detail-container'>
                 <h1>{movieDetail?.Title} ({movieDetail?.Year})</h1>
                 <span className='movie-rating'> Rating: {movieDetail?.imdbRating} / 10 ({movieDetail?.imdbVotes})</span>

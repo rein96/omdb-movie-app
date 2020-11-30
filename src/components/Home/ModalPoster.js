@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from 'components/shared/Button';
+import { fallBackErrorImage } from 'utils/Helper.js'
 import './ModalPoster.scss';
 
 function ModalPoster({ selectedMovie, setModal }) {
@@ -9,7 +10,7 @@ function ModalPoster({ selectedMovie, setModal }) {
     <div className="modal-backdrop-container cursor-pointer" onClick={() => setModal({ show: false, selectedMovie: {} })}>
       <div className='modal-container'>
         <div className='modal-card-container cursor-default' onClick={(e) => e.stopPropagation()}>
-          <img className='poster-image' src={selectedMovie?.Poster} alt={selectedMovie?.Title} />
+          <img className='poster-image' src={selectedMovie?.Poster} alt={selectedMovie?.Title}  onError={(e) => {e.target.src = fallBackErrorImage}} />
           <div className='modal-detail-container'>
             <div className='upper-detail'>
               <h1 className='mb-24'>
