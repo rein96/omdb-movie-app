@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import App from './App';
 import reducers from './reducers/Reducer'
 import reportWebVitals from './reportWebVitals';
+import * as serviceWorker from './serviceWorker';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -28,3 +29,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+serviceWorker.register();
