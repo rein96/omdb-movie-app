@@ -1,3 +1,24 @@
+The features of this movie app:
+ - Display List of movies
+ - Use Infinite Scroll in Home Page and Dropdown search box without plugin
+ - Search movies by keyword
+ - Single Page for Single Movie Detail
+ - Show Movie Poster in a popup modal window when image from the list is clicked
+ - Unit test for components (React testing library and Jest)
+ - Autocomplete searchbox implementation
+ - ReactJS
+ - React Hooks
+ - Redux
+ - Axios
+ - File structuring and separation of logical/UI layers 
+ - Written Test Cases for the components
+ 
+ `npm install` to install node_modules
+ `npm start` to run the app
+ `open localhost:3000` in the browser
+ `npm test` to unit test components.
+ Thanks :D
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
