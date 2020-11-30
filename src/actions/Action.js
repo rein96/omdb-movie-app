@@ -23,7 +23,8 @@ export const getMovies = ({ searchValue = 'disney', page = 1, isScroll = false }
     if (data.Response === 'True') {
       dispatch({
         type: isScroll ? 'GET_SCROLL_MOVIES' : 'GET_MOVIES',
-        payload: data
+        payload: data,
+        extra: searchValue,
       })
     } else {
       dispatch({

@@ -20,7 +20,8 @@ export default (state = init, action) => {
         ...state,
         movies: payload.Search,
         totalResults: payload.totalResults,
-        loadingMovies: false
+        loadingMovies: false,
+        homePageMovie: action.extra
       }
 
     case 'GET_SCROLL_MOVIES':

@@ -9,7 +9,7 @@ function ModalPoster({ selectedMovie, setModal }) {
     <div className="modal-backdrop-container cursor-pointer" onClick={() => setModal({ show: false, selectedMovie: {} })}>
       <div className='modal-container'>
         <div className='modal-card-container cursor-default' onClick={(e) => e.stopPropagation()}>
-          <img src={selectedMovie?.Poster} alt={selectedMovie?.Title} />
+          <img className='poster-image' src={selectedMovie?.Poster} alt={selectedMovie?.Title} />
           <div className='modal-detail-container'>
             <div className='upper-detail'>
               <h1 className='mb-24'>

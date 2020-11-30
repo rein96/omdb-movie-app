@@ -50,3 +50,17 @@
     margin-top: 24px;
   }
 }
+
+@media only screen and (max-width: 500px){
+  .header-container{
+    height: 140px;
+  }
+
+  .navbar-container{
+    flex-direction: column;
+  }
+
+  .search-and-dropdown{
+    margin-top: 8px;
+  }
+}

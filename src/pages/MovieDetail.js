@@ -13,7 +13,7 @@ const MovieDetail = () => {
   const getData = async () => {
     setLoading(true)
     const data = await getMovieDetail(movieId)
-    console.log("movieDetail ~ data", data)
+    // console.log("movieDetail ~ data", data)
     if (data) {
       setMovieDetail(data)
     }
@@ -34,7 +34,7 @@ const MovieDetail = () => {
             <Loading />
             :
             <div className='movie-card-detail-container'>
-              <img src={movieDetail?.Poster} alt={movieDetail} />
+              <img className='poster-image' src={movieDetail?.Poster} alt={movieDetail} />
               <div className='movie-detail-container'>
                 <h1>{movieDetail?.Title} ({movieDetail?.Year})</h1>
                 <span className='movie-rating'> Rating: {movieDetail?.imdbRating} / 10 ({movieDetail?.imdbVotes})</span>

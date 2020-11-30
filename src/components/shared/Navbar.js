@@ -11,14 +11,16 @@ import './Navbar.scss'
 function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie, setHomePageMovie }) {
   const history = useHistory();
 
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('disney')
   const [isFocus, setIsFocus] = useState(false)
   const [page, setPage] = useState(1)
   const [animation, setAnimation] = useState(false)
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
   const handleOnBlur = () => {
-    setAnimation(false)
+    setTimeout(() => {
+      setAnimation(false)
+    }, 200);
     setTimeout(() => {
       setIsFocus(false)
     }, 600);
@@ -33,7 +35,7 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie, setHo
     if (event.keyCode === 13 && searchValue) {
       history.push(`/`)
       setHomePageMovie(searchValue)
-      getMovies(searchValue)
+      getMovies({ searchValue: searchValue, page: 1, isScroll: false })
     }
   }
 
@@ -81,7 +83,7 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie, setHo
             type='text'
             placeholder='Search Movie Title...'
             onFocus={() => {setIsFocus(true); setAnimation(true)}}
-            // onBlur={() => handleOnBlur()}
+            onBlur={() => handleOnBlur()}
             value={searchValue}
             onChange={(e) => handleSearch(e.target.value, e)}
             onKeyDown={handleKeyDown}

@@ -4,13 +4,17 @@
 
   .home-body-container{
     background-color: var(--dark-2);
-
-    .home-card-container{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
   }
+
+  .home-card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .text-keyword{
+    color: var(--green-1);
+    font-weight: 600;
+}
 }
