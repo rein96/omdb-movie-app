@@ -7,8 +7,6 @@ const Interface = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node
-  // disabled: PropTypes.bool,
-  // fullWidth: PropTypes.bool
 }
 
 function Button({ type = 'button', className = '', children, onClick = () => {} }) {

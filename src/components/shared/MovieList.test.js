@@ -8,7 +8,7 @@ afterEach(cleanup)
 describe('testing card component', () => {
   const movie = { Title: 'Shrek', imdbID: 1 }
   it('should be rendered correctly', () =>{
-    const { getByTestId } = render(<MovieList index={1} movie={movie} />)
+    const { getByTestId } = render(<MovieList index={1} movie={movie} onClick={() => {}}/>)
     expect(getByTestId('movie-list-1')).toHaveTextContent('Shrek')
   })
 

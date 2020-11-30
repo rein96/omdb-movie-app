@@ -1,6 +1,12 @@
 import React from 'react'
+import PropTypes from "prop-types";
 import './MovieList.scss'
 
+const Interfaces = {
+  index: PropTypes.number,
+  onClick: PropTypes.func,
+  movie: PropTypes.object.isRequired
+}
 function MovieList({ movie, onClick, index }) {
   return (
     <div
@@ -12,5 +18,7 @@ function MovieList({ movie, onClick, index }) {
     </div>
   )
 }
+
+MovieList.propTypes = Interfaces
 
 export default MovieList

@@ -25,9 +25,9 @@ const Home = ({ getMovies, globalStateMovie }) => {
       {/* <Navbar /> */}
       <div className='home-body-container'>
         <div className='home-card-container container-helper bg-dark-2'>
-          {globalStateMovie.movies.map(movie => {
+          {globalStateMovie.movies.map((movie, index) => {
             return (
-              <MovieCard key={movie.imdbID} movie={movie} onClickPoster={onClickPoster}/>
+              <MovieCard key={movie.imdbID} index={index} movie={movie} onClick={onClickPoster}/>
             )
           })}
         </div>
