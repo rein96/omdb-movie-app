@@ -1,7 +1,7 @@
-import axios from 'axios'
+// import axios from 'axios'
 
-export default axios.create({
-    baseURL: 'http://www.omdbapi.com?apikey=faf7e5bb'
-})
+// export default axios.create({
+//     baseURL: 'http://www.omdbapi.com?apikey=faf7e5bb'
+// })
 
-// http://www.omdbapi.com?apikey=faf7e5bb&s=Batman&page=2
+// // http://www.omdbapi.com?apikey=faf7e5bb&s=Batman&page=2

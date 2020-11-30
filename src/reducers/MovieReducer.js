@@ -1,9 +1,11 @@
 // import streetcrownlogodefault from '../images/streetcrown-logo.png'
 
 const init = {
+  homePageMovie: 'disney',
   movies: [],
   totalResults: 0,
   loadingMovies: false,
+  scrollHomeLoadingMovies: false,
   searchMovies: [],
   searchTotalResults: 0,
   loadingSearchMovies: false,
@@ -19,6 +21,20 @@ export default (state = init, action) => {
         movies: payload.Search,
         totalResults: payload.totalResults,
         loadingMovies: false
+      }
+
+    case 'GET_SCROLL_MOVIES':
+      return {
+        ...state,
+        movies: [...state.movies , ...payload.Search],
+        totalResults: payload.totalResults,
+        loadingMovies: false
+      }
+
+    case 'SET_HOME_MOVIE':
+      return {
+        ...state,
+        homePageMovie: payload
       }
 
     case 'SEARCH_MOVIES':
@@ -43,8 +59,15 @@ export default (state = init, action) => {
     case 'SEARCH_MOVIES_EMPTY':
       return {
         ...state,
+        loadingMovies: false,
         loadingSearchMovies: false,
         scrollLoading: false,
+      }
+
+    case 'HOME_SCROLL_LOADING':
+      return {
+        ...state,
+        scrollHomeLoadingMovies: true
       }
 
     case 'HOME_LOADING':

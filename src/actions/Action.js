@@ -9,15 +9,27 @@ export const setLoading = (type) => {
   };
 }
 
-export const getMovies = (searchValue) => async dispatch => {
-  try {
-    setLoading('HOME_LOADING')
-    const { data } = await axios.get(`${url}&s=${searchValue}`)
+export const setHomePageMovie = (searchValue) => {
+  return {
+    type: 'SET_HOME_MOVIE',
+    payload: searchValue
+  }
+}
 
-    dispatch({
-      type: 'GET_MOVIES',
-      payload: data
-    })
+export const getMovies = ({ searchValue = 'disney', page = 1, isScroll = false }) => async dispatch => {
+  try {
+    setLoading(isScroll ? 'HOME_SCROLL_LOADING' : 'HOME_LOADING')
+    const { data } = await axios.get(`${url}&s=${searchValue}&page=${page}`)
+    if (data.Response === 'True') {
+      dispatch({
+        type: isScroll ? 'GET_SCROLL_MOVIES' : 'GET_MOVIES',
+        payload: data
+      })
+    } else {
+      dispatch({
+        type: 'SEARCH_MOVIES_EMPTY'
+      })
+    }
 
   } catch (err) {
     console.error(err);
@@ -28,14 +40,14 @@ export const getMovies = (searchValue) => async dispatch => {
   }
 }
 
-export const searchMovie = ({searchValue, page = 1, isScroll = false}) => async dispatch => {
+export const searchMovie = ({ searchValue, page = 1, isScroll = false }) => async dispatch => {
   try {
     setLoading(isScroll ? 'SET_LOADING_SCROLL_SEARCH_MOVIES' : 'SET_LOADING_SEARCH_MOVIES')
     const { data } = await axios.get(`${url}&s=${searchValue}&page=${page}`)
 
     if (data.Response === 'True') {
       dispatch({
-        type:  isScroll ? 'SCROLL_SEARCH_MOVIES' : 'SEARCH_MOVIES',
+        type: isScroll ? 'SCROLL_SEARCH_MOVIES' : 'SEARCH_MOVIES',
         payload: data
       })
     } else {
@@ -54,7 +66,7 @@ export const searchMovie = ({searchValue, page = 1, isScroll = false}) => async 
 }
 
 export const setEmptyMovie = () => {
-  return{
+  return {
     type: 'SEARCH_MOVIES_EMPTY',
   }
 }

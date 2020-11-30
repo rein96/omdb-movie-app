@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import useDebounce from 'Hooks/useDebounce'
 import logo from 'images/RALogoOriginal.png'
-import { getMovies, searchMovie, setLoading, setEmptyMovie } from 'actions/Action.js'
+import { getMovies, searchMovie, setLoading, setEmptyMovie, setHomePageMovie } from 'actions/Action.js'
 import Loading from 'components/shared/Loading.js'
 import Movielist from 'components/shared/MovieList.js';
 import './Navbar.scss'
 
-function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
+function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie, setHomePageMovie }) {
   const history = useHistory();
 
   const [searchValue, setSearchValue] = useState('')
@@ -32,6 +32,7 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
     // press enter
     if (event.keyCode === 13 && searchValue) {
       history.push(`/`)
+      setHomePageMovie(searchValue)
       getMovies(searchValue)
     }
   }
@@ -59,6 +60,7 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
     loadData();
     // eslint-disable-next-line
   }, [page])
+  // End
 
   useEffect(() => {
     if (searchValue) {
@@ -79,7 +81,7 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
             type='text'
             placeholder='Search Movie Title...'
             onFocus={() => {setIsFocus(true); setAnimation(true)}}
-            onBlur={() => handleOnBlur()}
+            // onBlur={() => handleOnBlur()}
             value={searchValue}
             onChange={(e) => handleSearch(e.target.value, e)}
             onKeyDown={handleKeyDown}
@@ -120,4 +122,4 @@ const mapStateToProps = ({ globalStateMovie }) => {
   }
 }
 
-export default connect(mapStateToProps, { searchMovie, setLoading, getMovies, setEmptyMovie })(Navbar);
+export default connect(mapStateToProps, { searchMovie, setLoading, getMovies, setEmptyMovie, setHomePageMovie })(Navbar);

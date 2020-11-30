@@ -20,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--dark-2);
+  overflow-y: hidden; // to remove y scrollbar on body, to prevent double scrollbar (infinite scrolling purpose)
 }
 
 code {
