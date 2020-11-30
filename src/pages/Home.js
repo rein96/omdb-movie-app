@@ -44,7 +44,7 @@ const Home = ({ getMovies, globalStateMovie }) => {
     }
     // eslint-disable-next-line
   }, [])
-  
+
 
   return (
     <section className='section-home' onScroll={onScroll}>
@@ -52,11 +52,14 @@ const Home = ({ getMovies, globalStateMovie }) => {
         <div className='container-helper bg-dark-2'>
           <h2 className='text-center text-white mt-24'> Results for: <span className='text-keyword'>{globalStateMovie.homePageMovie}</span> </h2>
           <div className='home-card-container'>
-            {globalStateMovie.movies.map((movie, index) => {
-              return (
-                <MovieCard key={movie.imdbID} index={index} movie={movie} onClick={onClickPoster} />
-              )
-            })}
+            {globalStateMovie.loadingMovies
+              ?
+              <Loading />
+              : globalStateMovie.movies.map((movie, index) => {
+                return (
+                  <MovieCard key={movie.imdbID} index={index} movie={movie} onClick={onClickPoster} />
+                )
+              })}
           </div>
         </div>
       </div>

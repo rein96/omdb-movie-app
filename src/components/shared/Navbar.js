@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import useDebounce from 'Hooks/useDebounce'
 import logo from 'images/RALogoOriginal.png'
-import { getMovies, searchMovie, setLoading, setEmptyMovie, setHomePageMovie } from 'actions/Action.js'
+import { getMovies, searchMovie, setEmptyMovie, setHomePageMovie } from 'actions/Action.js'
 import Loading from 'components/shared/Loading.js'
 import Movielist from 'components/shared/MovieList.js';
 import './Navbar.scss'
@@ -124,4 +124,4 @@ const mapStateToProps = ({ globalStateMovie }) => {
   }
 }
 
-export default connect(mapStateToProps, { searchMovie, setLoading, getMovies, setEmptyMovie, setHomePageMovie })(Navbar);
+export default connect(mapStateToProps, { searchMovie, getMovies, setEmptyMovie, setHomePageMovie })(Navbar);

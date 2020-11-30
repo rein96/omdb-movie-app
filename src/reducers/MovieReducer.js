@@ -1,4 +1,16 @@
-// import streetcrownlogodefault from '../images/streetcrown-logo.png'
+import {
+  SET_HOME_MOVIE,
+  HOME_SCROLL_LOADING,
+  HOME_LOADING,
+  GET_SCROLL_MOVIES,
+  GET_MOVIES,
+  SEARCH_MOVIES_EMPTY,
+  ERROR,
+  SET_LOADING_SCROLL_SEARCH_MOVIES,
+  SET_LOADING_SEARCH_MOVIES,
+  SCROLL_SEARCH_MOVIES,
+  SEARCH_MOVIES,
+} from 'actions/types.js'
 
 const init = {
   homePageMovie: 'disney',
@@ -15,7 +27,7 @@ const init = {
 export default (state = init, action) => {
   const payload = action.payload;
   switch (action.type) {
-    case 'GET_MOVIES':
+    case GET_MOVIES:
       return {
         ...state,
         movies: payload.Search,
@@ -24,7 +36,7 @@ export default (state = init, action) => {
         homePageMovie: action.extra
       }
 
-    case 'GET_SCROLL_MOVIES':
+    case GET_SCROLL_MOVIES:
       return {
         ...state,
         movies: [...state.movies , ...payload.Search],
@@ -32,14 +44,13 @@ export default (state = init, action) => {
         loadingMovies: false
       }
 
-    case 'SET_HOME_MOVIE':
+    case SET_HOME_MOVIE:
       return {
         ...state,
         homePageMovie: payload
       }
 
-    case 'SEARCH_MOVIES':
-      // const { Search, totalResults } = action.payload
+    case SEARCH_MOVIES:
       return {
         ...state,
         searchMovies: payload.Search,
@@ -47,8 +58,7 @@ export default (state = init, action) => {
         loadingSearchMovies: false
       }
 
-    case 'SCROLL_SEARCH_MOVIES':
-      // const { Search, totalResults } = action.payload
+    case SCROLL_SEARCH_MOVIES:
       return {
         ...state,
         searchMovies: [...state.searchMovies, ...payload.Search],
@@ -57,7 +67,7 @@ export default (state = init, action) => {
         scrollLoading: false
       }
 
-    case 'SEARCH_MOVIES_EMPTY':
+    case SEARCH_MOVIES_EMPTY:
       return {
         ...state,
         loadingMovies: false,
@@ -65,31 +75,31 @@ export default (state = init, action) => {
         scrollLoading: false,
       }
 
-    case 'HOME_SCROLL_LOADING':
+    case HOME_SCROLL_LOADING:
       return {
         ...state,
         scrollHomeLoadingMovies: true
       }
 
-    case 'HOME_LOADING':
+    case HOME_LOADING:
       return {
         ...state,
         loadingMovies: true
       }
 
-    case 'SET_LOADING_SEARCH_MOVIES':
+    case SET_LOADING_SEARCH_MOVIES:
       return {
         ...state,
         loadingSearchMovies: true
       };
 
-    case 'SET_LOADING_SCROLL_SEARCH_MOVIES':
+    case SET_LOADING_SCROLL_SEARCH_MOVIES:
       return {
         ...state,
         scrollLoading: true
       }
 
-    case 'ERROR':
+    case ERROR:
       return {
         ...state,
         error: payload,
