@@ -27,13 +27,13 @@ export const getMovies = (searchValue) => async dispatch => {
   }
 }
 
-export const searchMovie = (searchValue) => async dispatch => {
+export const searchMovie = ({searchValue, page = 1, isScroll = false}) => async dispatch => {
   try {
-    const { data } = await axios.get(`${url}&s=${searchValue}`)
+    const { data } = await axios.get(`${url}&s=${searchValue}&page=${page}`)
 
     if (data.Response === 'True') {
       dispatch({
-        type: 'SEARCH_MOVIES',
+        type:  isScroll ? 'SCROLL_SEARCH_MOVIES' : 'SEARCH_MOVIES',
         payload: data
       })
     } else {

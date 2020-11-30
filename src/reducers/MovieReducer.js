@@ -7,12 +7,13 @@ const init = {
   searchMovies: [],
   searchTotalResults: 0,
   loadingSearchMovies: false,
+  scrollLoading : false
 }
 
 export default (state = init, action) => {
+  const payload = action.payload;
   switch (action.type) {
     case 'INITIAL_MOVIES':
-      const payload = action.payload
       return {
         ...state,
         movies: payload.Search,
@@ -21,19 +22,29 @@ export default (state = init, action) => {
       }
 
     case 'SEARCH_MOVIES':
-      const { Search, totalResults } = action.payload
+      // const { Search, totalResults } = action.payload
       return {
         ...state,
-        searchMovies: Search,
-        searchTotalResults: totalResults,
+        searchMovies: payload.Search,
+        searchTotalResults: payload.totalResults,
         loadingSearchMovies: false
       }
 
-    case 'SEARCH_MOVIES_EMPTY' :
-      return{
+    case 'SCROLL_SEARCH_MOVIES':
+      // const { Search, totalResults } = action.payload
+      return {
         ...state,
-        searchMovies: [],
-        loadingSearchMovies: false
+        searchMovies: [...state.searchMovies, ...payload.Search],
+        searchTotalResults: payload.totalResults,
+        loadingSearchMovies: false,
+        scrollLoading: false
+      }
+
+    case 'SEARCH_MOVIES_EMPTY':
+      return {
+        ...state,
+        loadingSearchMovies: false,
+        scrollLoading: false,
       }
 
     case 'SET_LOADING_SEARCH_MOVIES':
@@ -48,10 +59,16 @@ export default (state = init, action) => {
         loadingMovies: true
       };
 
-    case 'ERROR':
-      return{
+    case 'SET_LOADING_SCROLL_SEARCH_MOVIES':
+      return {
         ...state,
-        error: action.payload,
+        scrollLoading: true
+      }
+
+    case 'ERROR':
+      return {
+        ...state,
+        error: payload,
         loadingSearchMovies: false,
         loadingMovies: false
       }

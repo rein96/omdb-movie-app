@@ -31,9 +31,7 @@ const MovieDetail = () => {
         {
           loading
             ?
-            <div className='text-center'>
-              <Loading />
-            </div>
+            <Loading />
             :
             <div className='movie-card-detail-container'>
               <img src={movieDetail?.Poster} alt={movieDetail} />

@@ -13,7 +13,8 @@ function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmpty
 
   const [searchValue, setSearchValue] = useState('')
   const [isFocus, setIsFocus] = useState(false)
-  const debouncedSearchValue = useDebounce(searchValue, 1000);
+  const [page, setPage] = useState(1)
+  const debouncedSearchValue = useDebounce(searchValue, 500);
 
   const handleOnBlur = () => {
     setTimeout(() => {
@@ -37,9 +38,28 @@ function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmpty
     history.push(`/movie/${imdbID}`)
   }
 
+  // Infinite scroll purposes
+  const onScroll = (event) => {
+    // scrollHeight = maximum amount height content
+    // clientHeight = height div dropdown-search-container
+    const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
+    if (scrollHeight - scrollTop === clientHeight) {
+      setPage(prev => prev + 1);
+    }
+  }
+
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading('SET_LOADING_SCROLL_SEARCH_MOVIES')
+      searchMovie({ searchValue, page, isScroll: true })
+    };
+
+    loadData();
+  }, [page])
+
   useEffect(() => {
     if (searchValue) {
-      searchMovie(searchValue)
+      searchMovie({ searchValue, page: 1, isScroll: false })
       setLoading('SET_LOADING_SEARCH_MOVIES')
     } else {
       setEmptyMovie()
@@ -64,13 +84,11 @@ function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmpty
           {
             isFocus
             &&
-            <div className='dropdown-search-container'>
+            <div className='dropdown-search-container' onScroll={onScroll}>
               {
                 globalStateMovie.loadingSearchMovies
                   ?
-                  <div className='text-center'>
-                    <Loading />
-                  </div>
+                  <Loading />
                   :
                   (
                     globalStateMovie?.searchMovies.length === 0
@@ -84,6 +102,7 @@ function Navbar({ searchMovie, globalStateMovie, setLoading, getMovies, setEmpty
                       })
                   )
               }
+              {globalStateMovie.scrollLoading && <Loading />}
             </div>
           }
         </div>
