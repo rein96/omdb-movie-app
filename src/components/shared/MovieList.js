@@ -1,11 +1,12 @@
 import React from 'react'
 import './MovieList.scss'
 
-function MovieList({ movie, handleClickMovie }) {
+function MovieList({ movie, onClick, index }) {
   return (
     <div
+      data-testid={`movie-list-${index}`}
       className='movie-list text-ellipsis'
-      onClick={() => handleClickMovie(movie.imdbID, movie.Title)}
+      onClick={() => onClick(movie.imdbID, movie.Title)}
     >
       {movie.Title}
     </div>

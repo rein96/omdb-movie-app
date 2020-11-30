@@ -96,9 +96,9 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
                       ?
                       <h3 className='empty-state-text'>Empty Data</h3>
                       :
-                      globalStateMovie?.searchMovies.map(movie => {
+                      globalStateMovie?.searchMovies.map((movie, index) => {
                         return (
-                          <Movielist key={movie.imdbID} handleClickMovie={handleClickMovie} movie={movie} />
+                          <Movielist key={movie.imdbID} index={index} onClick={handleClickMovie} movie={movie} />
                         )
                       })
                   )

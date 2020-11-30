@@ -13,7 +13,7 @@ const Interface = {
 
 function Button({ type = 'button', className = '', children, onClick = () => {} }) {
   return (
-    <button type={type} className={`button-app cursor-pointer ${className}`} onClick={onClick}>
+    <button data-testid='button' type={type} className={`button-app cursor-pointer ${className}`} onClick={onClick}>
       {children}
     </button>
   )
