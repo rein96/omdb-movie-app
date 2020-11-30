@@ -1,4 +1,7 @@
+![image](https://user-images.githubusercontent.com/50010891/100639566-e87baf00-3367-11eb-9718-d0193bd34c74.png)
+
 The web app is live: https://movies.reinhartandreas.com/
+
 Alternative: https://reinhartmovie.netlify.app/
 
 The features of this movie app:
@@ -15,11 +18,17 @@ The features of this movie app:
  - Axios
  - File structuring and separation of logical/UI layers 
  - Written Test Cases for the components
+ - Handle onError image
  
  `npm install` to install node_modules
+
  `npm start` to run the app
- `open localhost:3000` in the browser
+ 
+  open `localhost:3000` in the browser
+ 
  `npm test` to unit test components.
+
+ 
  Thanks :D
 
 # Getting Started with Create React App
