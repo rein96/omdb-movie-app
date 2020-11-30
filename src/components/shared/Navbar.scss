@@ -22,8 +22,13 @@
     border: none;
     padding: 8px;
     font-size: 14px;
-    border-radius: 16px;
+    border-radius: 8px;
     color: white;
+    outline: none;
+
+    &:focus, &:hover{
+      border: 2px solid var(--green-1);
+    }
   }
 
   .dropdown-search-container{

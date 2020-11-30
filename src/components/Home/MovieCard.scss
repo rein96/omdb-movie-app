@@ -1,9 +1,21 @@
 .card-movie-container{
   width: 300px;
   padding: 16px;
+  margin: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* border: 1px solid var(--green-1); */
+  border-radius: 8px;
+  transition: transform 0.3s;
+
+  &:hover{
+    background: var(--dark-3);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.1);
+    -webkit-filter: brightness(110%);
+    filter: brightness(110%);
+  }
 
   .movie-poster{
     // width: 240px;

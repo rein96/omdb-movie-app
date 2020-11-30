@@ -14,12 +14,14 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
   const [searchValue, setSearchValue] = useState('')
   const [isFocus, setIsFocus] = useState(false)
   const [page, setPage] = useState(1)
+  const [animation, setAnimation] = useState(false)
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
   const handleOnBlur = () => {
+    setAnimation(false)
     setTimeout(() => {
       setIsFocus(false)
-    }, 500);
+    }, 600);
   }
 
   const handleSearch = (value) => {
@@ -76,7 +78,7 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
             className='search-box'
             type='text'
             placeholder='Search Movie Title...'
-            onFocus={() => setIsFocus(true)}
+            onFocus={() => {setIsFocus(true); setAnimation(true)}}
             onBlur={() => handleOnBlur()}
             value={searchValue}
             onChange={(e) => handleSearch(e.target.value, e)}
@@ -85,7 +87,7 @@ function Navbar({ searchMovie, globalStateMovie, getMovies, setEmptyMovie }) {
           {
             isFocus
             &&
-            <div className='dropdown-search-container' onScroll={onScroll}>
+            <div className={`dropdown-search-container animated ${animation ? 'fadeInDown' : 'fadeOutUp'}`} onScroll={onScroll}>
               {
                 globalStateMovie.loadingSearchMovies
                   ?
