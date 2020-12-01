@@ -5,6 +5,7 @@ import {
   HOME_LOADING,
   GET_SCROLL_MOVIES,
   GET_MOVIES,
+  GET_MOVIES_EMPTY,
   SEARCH_MOVIES_EMPTY,
   ERROR,
   SET_LOADING_SCROLL_SEARCH_MOVIES,
@@ -39,7 +40,15 @@ export const getMovies = ({ searchValue = 'disney', page = 1, isScroll = false }
         payload: data,
         extra: searchValue,
       })
-    } else {
+    }
+    else if (data.Error && data.Response === 'False') {
+      dispatch({
+        type: isScroll ? SEARCH_MOVIES_EMPTY : GET_MOVIES_EMPTY,
+        payload: data,
+        extra: searchValue,
+      })
+    }
+    else {
       dispatch({
         type: SEARCH_MOVIES_EMPTY
       })

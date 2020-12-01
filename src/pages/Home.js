@@ -56,11 +56,15 @@ const Home = ({ getMovies, globalStateMovie }) => {
               ?
               <Loading />
               :
-              globalStateMovie.movies.map((movie, index) => {
-                return (
-                  <MovieCard key={movie.imdbID} index={index} movie={movie} onClick={onClickPoster} />
-                )
-              })}
+              globalStateMovie.movies.length === 0
+                ?
+                <h2 className='text-center text-silver mt-24'>Movie not found</h2>
+                :
+                globalStateMovie.movies.map((movie, index) => {
+                  return (
+                    <MovieCard key={movie.imdbID} index={index} movie={movie} onClick={onClickPoster} />
+                  )
+                })}
           </div>
         </div>
       </div>

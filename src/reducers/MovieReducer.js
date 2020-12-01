@@ -4,6 +4,7 @@ import {
   HOME_LOADING,
   GET_SCROLL_MOVIES,
   GET_MOVIES,
+  GET_MOVIES_EMPTY,
   SEARCH_MOVIES_EMPTY,
   ERROR,
   SET_LOADING_SCROLL_SEARCH_MOVIES,
@@ -34,6 +35,13 @@ export default (state = init, action) => {
         totalResults: payload.totalResults,
         loadingMovies: false,
         homePageMovie: action.extra
+      }
+    
+    case GET_MOVIES_EMPTY:
+      return{
+        ...state,
+        movies: [],
+        loadingMovies: false
       }
 
     case GET_SCROLL_MOVIES:
@@ -73,6 +81,7 @@ export default (state = init, action) => {
         loadingMovies: false,
         loadingSearchMovies: false,
         scrollLoading: false,
+        scrollHomeLoadingMovies: false,
       }
 
     case HOME_SCROLL_LOADING:
