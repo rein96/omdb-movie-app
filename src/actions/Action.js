@@ -5,13 +5,14 @@ import {
   HOME_LOADING,
   GET_SCROLL_MOVIES,
   GET_MOVIES,
-  GET_MOVIES_EMPTY,
+  GET_MOVIES_ERROR,
   SEARCH_MOVIES_EMPTY,
   ERROR,
   SET_LOADING_SCROLL_SEARCH_MOVIES,
   SET_LOADING_SEARCH_MOVIES,
   SCROLL_SEARCH_MOVIES,
   SEARCH_MOVIES,
+  SEARCH_MOVIES_ERROR,
 } from './types'
 
 let url = 'https://www.omdbapi.com?apikey=faf7e5bb';
@@ -43,7 +44,7 @@ export const getMovies = ({ searchValue = 'disney', page = 1, isScroll = false }
     }
     else if (data.Error && data.Response === 'False') {
       dispatch({
-        type: isScroll ? SEARCH_MOVIES_EMPTY : GET_MOVIES_EMPTY,
+        type: isScroll ? SEARCH_MOVIES_EMPTY : GET_MOVIES_ERROR,
         payload: data,
         extra: searchValue,
       })
@@ -73,7 +74,15 @@ export const searchMovie = ({ searchValue, page = 1, isScroll = false }) => asyn
         type: isScroll ? SCROLL_SEARCH_MOVIES : SEARCH_MOVIES,
         payload: data
       })
-    } else {
+    }
+    else if (data.Error && data.Response === 'False') {
+      dispatch({
+        type: isScroll ? SEARCH_MOVIES_EMPTY : SEARCH_MOVIES_ERROR,
+        payload: data,
+        extra: searchValue,
+      })
+    }
+    else {
       dispatch({
         type: SEARCH_MOVIES_EMPTY
       })

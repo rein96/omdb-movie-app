@@ -4,21 +4,24 @@ import {
   HOME_LOADING,
   GET_SCROLL_MOVIES,
   GET_MOVIES,
-  GET_MOVIES_EMPTY,
+  GET_MOVIES_ERROR,
   SEARCH_MOVIES_EMPTY,
   ERROR,
   SET_LOADING_SCROLL_SEARCH_MOVIES,
   SET_LOADING_SEARCH_MOVIES,
   SCROLL_SEARCH_MOVIES,
   SEARCH_MOVIES,
+  SEARCH_MOVIES_ERROR,
 } from 'actions/types.js'
 
 const init = {
+  // Home
   homePageMovie: 'disney',
   movies: [],
   totalResults: 0,
   loadingMovies: false,
   scrollHomeLoadingMovies: false,
+  // Dropdown box
   searchMovies: [],
   searchTotalResults: 0,
   loadingSearchMovies: false,
@@ -37,7 +40,7 @@ export default (state = init, action) => {
         homePageMovie: action.extra
       }
     
-    case GET_MOVIES_EMPTY:
+    case GET_MOVIES_ERROR:
       return{
         ...state,
         movies: [],
@@ -63,6 +66,14 @@ export default (state = init, action) => {
         ...state,
         searchMovies: payload.Search,
         searchTotalResults: payload.totalResults,
+        loadingSearchMovies: false
+      }
+
+    case SEARCH_MOVIES_ERROR:
+      return {
+        ...state,
+        searchMovies: [],
+        searchTotalResults: 0,
         loadingSearchMovies: false
       }
 
