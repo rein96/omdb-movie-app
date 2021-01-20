@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from "prop-types";
-import { fallBackErrorImage } from 'utils/Helper.js'
+import { useHistory } from 'react-router-dom';
+import { fallBackErrorImage, isMobile } from 'utils/Helper.js'
 import './MovieCard.scss'
 
 const Interfaces = {
@@ -8,10 +9,17 @@ const Interfaces = {
   onClick: PropTypes.func,
   movie: PropTypes.object.isRequired
 }
-function MovieCard({index, movie, onClick}) {
+function MovieCard({ index, movie, onClick }) {
+  const history = useHistory();
+
   return (
-    <div key={movie?.imdbID} data-testid={`movie-card-${index}`} className='card-movie-container cursor-pointer' onClick={() => onClick(movie?.imdbID)}>
-      <img src={movie?.Poster} onError={(e) => {e.target.src = fallBackErrorImage}} className='movie-poster' alt={movie?.Title}/>
+    <div
+      key={movie?.imdbID}
+      data-testid={`movie-card-${index}`}
+      className='card-movie-container cursor-pointer'
+      onClick={isMobile() ? () => history.push(`/movie/${movie?.imdbID}`) : () => onClick(movie?.imdbID)}
+    >
+      <img src={movie?.Poster} onError={(e) => { e.target.src = fallBackErrorImage }} className='movie-poster' alt={movie?.Title} />
       <h4 className='movie-title text-ellipsis color-white'>{movie?.Title}</h4>
     </div>
   )

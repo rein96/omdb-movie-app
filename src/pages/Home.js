@@ -45,7 +45,6 @@ const Home = ({ getMovies, globalStateMovie }) => {
     // eslint-disable-next-line
   }, [])
 
-
   return (
     <section className='section-home' onScroll={onScroll}>
       <div className='home-body-container'>
